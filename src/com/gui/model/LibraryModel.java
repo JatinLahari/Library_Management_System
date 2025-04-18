@@ -19,6 +19,9 @@ public class LibraryModel {
 		this.contact = contact;
 		this.address = address;
 	}
+	public void setBookId(int bookId) {
+		this.bookId = bookId;
+	}
 	public int getBookId() {
 		return bookId;
 	}
