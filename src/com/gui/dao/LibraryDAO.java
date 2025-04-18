@@ -129,7 +129,7 @@ public class LibraryDAO {
 	public List<LibraryModel> showByAuthor(String author) throws SQLException {
 		List<LibraryModel> l = new ArrayList<>();
 		Connection con = getConnect();
-		String aut = "SELECT Books.BookID, Books.Book_Title, Books.ISBN_Number, Books.Available_Copies, Authors.Author_Name, Author.Contact_Number, Authors.Address FROM Books JOIN Authors ON Books.BookID = Authors.BookID WHERE Authors.Author_Name = ?";
+		String aut = "SELECT Books.BookID, Books.Book_Title, Books.ISBN_Number, Books.Available_Copies, Authors.Author_Name, Authors.Contact_Number, Authors.Address FROM Books JOIN Authors ON Books.BookID = Authors.BookID WHERE Authors.Author_Name = ?";
 		ps = con.prepareStatement(aut);
 		ps.setString(1, author);
 		ResultSet rs = ps.executeQuery();
@@ -209,13 +209,14 @@ public class LibraryDAO {
 		ResultSet rs2 = null;
 		if (!rs.next()) {
 			System.out.println("<------- ❌No Book Available of this BookID.------->");
-		} else {
-			String upd = "UPDATE Authors Set Author_Name = ? WHERE BookID = ?";
+		} 
+		else {
+			String upd = "UPDATE Books Set ISBN_Number = ? WHERE BookID = ?";
 			ps = con.prepareStatement(upd);
 			ps.setString(1, isb);
 			ps.setInt(2, id);
 			ps.executeUpdate();
-			System.out.println("<------- Author Name Updated Successfully! ✔️------->");
+			System.out.println("<------- ISBN no. Updated Successfully! ✔️------->");
 			String g1 = "SELECT ISBN_Number from Books where BookID = ?";
 			ps = con.prepareStatement(g1);
 			ps.setInt(1, id);
@@ -283,7 +284,8 @@ public class LibraryDAO {
 		ResultSet rs = ps.executeQuery();
 		if (!rs.next()) {
 			System.out.println("<------- ❌No Matches Found! ❌ ------->");
-		} else {
+		} 
+		else {
 			String del = "DELETE FROM Books where BookID = ?";
 			ps = con.prepareStatement(del);
 			ps.setInt(1, id);
@@ -359,14 +361,16 @@ public class LibraryDAO {
 	}
 	
 	// return book
-	public void returnB(String ttl, String brwr) throws SQLException{
+	public void returnBook(String ttl, String brwr) throws SQLException{
 		 Connection con = getConnect();
 
-        String query = "SELECT Borrower_Name FROM Borrowers WHERE Borrower_Name = ? AND Return_Date IS NULL";
+		 String query = "SELECT BookID from Borrowers Where Borrower_Name = ? AND Return_Date IS NULL";
          ps = con.prepareStatement(query);
          ps.setString(1, brwr);
          ResultSet rs = ps.executeQuery(); 
+         
          if(rs.next()) {
+//        	 String borrower = rs.getString("Borrower_Name");
          String ret = "UPDATE Borrowers SET Return_Date = CURRENT_DATE Where Borrower_Name = ?";
          ps = con.prepareStatement(ret);
          ps.setString(1, brwr);

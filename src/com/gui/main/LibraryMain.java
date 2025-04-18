@@ -73,6 +73,7 @@ public class LibraryMain {
 				System.out.println("<------- Choose Operation: ");
 				System.out.println("<------- 1. Borrow Book. ");
 				System.out.println("<------- 2. Return Book. ");
+				System.out.print("<-------Enter no.:");
 				int oper = Integer.parseInt(sc.nextLine());
 				if(oper == 1) {
 					ls.borrowBook();

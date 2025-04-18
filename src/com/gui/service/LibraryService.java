@@ -212,7 +212,7 @@ public class LibraryService {
 		case 5:
 			System.out.print("\n<------- Enter Author Name: ");
 			String auth = sc.nextLine();
-			List<LibraryModel> lt5 = dao.showByIsbn(auth);
+			List<LibraryModel> lt5 = dao.showByAuthor(auth);
 			if(lt5.isEmpty()) {
 				System.out.println("No Books Are Available.");
 			}
@@ -326,7 +326,8 @@ public class LibraryService {
 	// book delete 
 	public void delete() throws SQLException {
 		System.out.println("\n<---------------------------------- Choose Operation Below ↓ -------------------------------->");
-		System.out.println("\t1. Delete Book by Book ID.\n\t2. Delete Book By Book Title.\n\t3. Delete Book By ISBN no.");
+		System.out.println("\t1. Remove Book by Book ID.\n\t2. Remove Book By Book Title.\n\t3. Remove Book By ISBN no.");
+		System.out.print("<-------Enter no.:");
 		int delete = Integer.parseInt(sc.nextLine());
 		
 		if(delete == 1) {
@@ -347,19 +348,19 @@ public class LibraryService {
 	}
 	
 	public void borrowBook() throws SQLException {
-		System.out.println("<------- Enter Book Title: ");
+		System.out.print("<------- Enter Book Title: ");
 		String ttl = sc.nextLine();
-		System.out.println("<------- Enter Borrower Name: ");
+		System.out.print("<------- Enter Borrower Name: ");
 		String name = sc.nextLine();
 		dao.borrow(ttl, name);
 	}
 	
 	public void returnBook() throws SQLException{
-		System.out.println("<------- Enter Book Title: ");
+		System.out.print("<------- Enter Book Title: ");
 		String ttl = sc.nextLine();
-		System.out.println("<------- Enter Borrower Name: ");
+		System.out.print("<------- Enter Borrower Name: ");
 		String name = sc.nextLine();	
-		dao.returnB(ttl, name);
+		dao.returnBook(ttl, name);
 	}
 	
 	
