@@ -94,7 +94,7 @@ public class LibraryService {
 		while(true) {
 			System.out.print("Enter Author Address: ");
 			 address = sc.nextLine();
-			if(author.isEmpty()) {
+			if(address.isEmpty()) {
 				System.out.println("<------- ❌Invalid Author Address! Please Enter a valid Author Name. ------->");
 			}
 			else {
