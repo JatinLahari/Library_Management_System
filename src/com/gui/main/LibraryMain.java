@@ -89,12 +89,14 @@ public class LibraryMain {
 				}
 				break;
 			case 6:
+				System.out.print("<---Logging Out");
+				for(int i=1; i<=5; i++) {
+					Thread.sleep(500);
+					System.out.print(".");
+				}
+				System.out.print("\n<---------------------------------------------------------------------------------------------------------------------->\n");
 				lm.login();
 			}
 		}
-		
-		
-		
-		
 	}
 }
